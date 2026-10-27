@@ -10,7 +10,8 @@ python3 -m http.server 8000
 ```
 
 ## Estado
-- [x] Menú de inicio (Jugar, Opciones, Créditos)
+- [x] Menú de inicio (Jugar, Mejoras, Gacha, Opciones, Créditos)
+- [x] Contador de monedas y tickets
 - [ ] Partida: movimiento y primera oleada
 
 Proyecto fan sin ánimo de lucro. Pokémon es marca de Nintendo, Game Freak y The Pokémon Company. No se usan recursos oficiales.

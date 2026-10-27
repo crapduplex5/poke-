@@ -13,6 +13,12 @@
   <!-- Fondo animado: estrellas, grietas y orbes -->
   <canvas id="bg"></canvas>
 
+  <!-- Monedas y tickets (se conservan entre partidas) -->
+  <div id="wallet" aria-label="Tus recursos">
+    <span class="res res-coin" title="Monedas"><i class="ico coin"></i><b id="coins">0</b></span>
+    <span class="res res-ticket" title="Tickets de gacha"><i class="ico ticket"></i><b id="tickets">0</b></span>
+  </div>
+
   <main id="app">
     <!-- Pantalla de título -->
     <section id="screen-title" class="screen active">
@@ -23,12 +29,14 @@
 
       <nav class="menu" id="main-menu">
         <button class="menu-btn" data-action="play">Jugar</button>
+        <button class="menu-btn" data-action="upgrades">Mejoras</button>
+        <button class="menu-btn" data-action="gacha">Gacha</button>
         <button class="menu-btn" data-action="options">Opciones</button>
         <button class="menu-btn" data-action="credits">Créditos</button>
       </nav>
 
       <p class="hint">↑ ↓ para moverte · Enter para elegir</p>
-      <p class="version">v0.1 · menú de inicio</p>
+      <p class="version">v0.2 · menú de inicio</p>
     </section>
 
     <!-- Opciones -->
@@ -53,6 +61,34 @@
           <span>Mostrar FPS</span>
           <input type="checkbox" id="opt-fps">
         </label>
+      </div>
+      <button class="menu-btn back-btn" data-action="back">Volver</button>
+    </section>
+
+    <!-- Mejoras (provisional) -->
+    <section id="screen-upgrades" class="screen">
+      <h2 class="panel-title">Mejoras</h2>
+      <div class="panel">
+        <p class="panel-note">Gasta las monedas que ganas en las rondas para mejorar a tus pokémon.</p>
+        <ul class="stat-list">
+          <li><span>Vida</span><span class="pips">○○○○○</span><span class="cost"><i class="ico coin"></i>50</span></li>
+          <li><span>Ataque</span><span class="pips">○○○○○</span><span class="cost"><i class="ico coin"></i>50</span></li>
+          <li><span>Velocidad</span><span class="pips">○○○○○</span><span class="cost"><i class="ico coin"></i>50</span></li>
+          <li><span>Alcance</span><span class="pips">○○○○○</span><span class="cost"><i class="ico coin"></i>50</span></li>
+        </ul>
+        <p class="soon">Próximamente</p>
+      </div>
+      <button class="menu-btn back-btn" data-action="back">Volver</button>
+    </section>
+
+    <!-- Gacha (provisional) -->
+    <section id="screen-gacha" class="screen">
+      <h2 class="panel-title">Gacha</h2>
+      <div class="panel gacha">
+        <div class="capsule" aria-hidden="true"></div>
+        <p class="panel-note">Usa los tickets que recoges en las partidas para conseguir pokémon nuevos.</p>
+        <p class="gacha-cost">1 tirada = <i class="ico ticket"></i>1</p>
+        <p class="soon">Próximamente</p>
       </div>
       <button class="menu-btn back-btn" data-action="back">Volver</button>
     </section>

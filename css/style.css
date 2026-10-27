@@ -170,6 +170,65 @@ html, body {
 
 .back-btn { width: min(240px, 100%); }
 
+/* ---------- Monedas y tickets ---------- */
+#wallet {
+  position: fixed;
+  top: calc(12px + env(safe-area-inset-top, 0px));
+  right: calc(12px + env(safe-area-inset-right, 0px));
+  display: flex;
+  gap: 10px;
+  z-index: 5;
+}
+.res {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  background: var(--panel);
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-variant-numeric: tabular-nums;
+}
+.res b { font-weight: normal; color: var(--gold); min-width: 2ch; text-align: right; }
+.ico { display: inline-block; flex: none; vertical-align: middle; }
+.ico.coin {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff3a8, var(--gold) 45%, #c99a00);
+  box-shadow: 0 0 6px rgba(255, 216, 76, .6);
+}
+.ico.ticket {
+  width: 16px; height: 11px; border-radius: 2px;
+  background: linear-gradient(135deg, #ff5c8a, var(--rift));
+  -webkit-mask: radial-gradient(circle at 0 50%, transparent 3px, #000 3.5px) left / 51% 100% no-repeat,
+                radial-gradient(circle at 100% 50%, transparent 3px, #000 3.5px) right / 51% 100% no-repeat;
+          mask: radial-gradient(circle at 0 50%, transparent 3px, #000 3.5px) left / 51% 100% no-repeat,
+                radial-gradient(circle at 100% 50%, transparent 3px, #000 3.5px) right / 51% 100% no-repeat;
+}
+
+/* ---------- Mejoras y Gacha ---------- */
+.panel-note { font-size: 9px; line-height: 2; color: var(--muted); text-align: center; }
+.stat-list { list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 10px; }
+.stat-list li { display: grid; grid-template-columns: 1fr auto auto; gap: 14px; align-items: center; }
+.pips { color: var(--rift); letter-spacing: 2px; }
+.cost { display: flex; align-items: center; gap: 6px; color: var(--gold); opacity: .6; }
+.soon { font-size: 10px; text-align: center; color: var(--rift-2); animation: blink 1.4s steps(2) infinite; }
+.gacha { align-items: center; }
+.gacha-cost { font-size: 10px; display: flex; align-items: center; gap: 8px; }
+.capsule {
+  width: 72px; height: 72px; border-radius: 50%;
+  border: 4px solid #2a1450;
+  background: linear-gradient(to bottom, var(--rift) 0 46%, #2a1450 46% 54%, var(--ink) 54%);
+  position: relative;
+  box-shadow: 0 0 22px rgba(177, 76, 255, .5);
+  animation: wobble 2.4s ease-in-out infinite;
+}
+.capsule::after {
+  content: ""; position: absolute; left: 50%; top: 50%;
+  width: 18px; height: 18px; transform: translate(-50%, -50%);
+  border-radius: 50%; background: var(--ink); border: 4px solid #2a1450;
+}
+
 #fps {
   position: fixed; left: 8px; top: 8px;
   font-size: 9px; color: var(--rift-2);
@@ -178,7 +237,8 @@ html, body {
 @keyframes float   { 50% { transform: translateY(-8px); } }
 @keyframes shimmer { to { background-position: -200% 0; } }
 @keyframes blink   { 50% { opacity: 0; } }
+@keyframes wobble  { 0%, 70%, 100% { transform: rotate(0); } 78% { transform: rotate(-12deg); } 86% { transform: rotate(10deg); } 94% { transform: rotate(-5deg); } }
 
 @media (prefers-reduced-motion: reduce) {
-  .logo, .logo-inf { animation: none; }
+  .logo, .logo-inf, .capsule, .soon { animation: none; }
 }

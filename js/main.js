@@ -76,6 +76,8 @@
     options: document.getElementById("screen-options"),
     credits: document.getElementById("screen-credits"),
     play: document.getElementById("screen-play"),
+    upgrades: document.getElementById("screen-upgrades"),
+    gacha: document.getElementById("screen-gacha"),
   };
   let current = "title";
   let selected = 0;
@@ -93,7 +95,11 @@
   }
 
   function highlight() {
-    buttons().forEach((b, i) => b.classList.toggle("selected", i === selected));
+    const list = buttons();
+    list.forEach((b, i) => b.classList.toggle("selected", i === selected));
+    // Mantener el foco en el botón resaltado para que no haya dos marcados
+    const active = list[selected];
+    if (active && document.activeElement !== active) active.focus({ preventScroll: true });
   }
 
   function act(action) {
@@ -138,6 +144,23 @@
       act("back");
     }
   });
+
+  // ---------- Monedas y tickets (progreso entre partidas) ----------
+  const SAVE_KEY = "pokeinf.save";
+  const save = loadSave();
+
+  function loadSave() {
+    try {
+      return { coins: 0, tickets: 0, ...JSON.parse(localStorage.getItem(SAVE_KEY) || "{}") };
+    } catch {
+      return { coins: 0, tickets: 0 };
+    }
+  }
+  function renderWallet() {
+    document.getElementById("coins").textContent = save.coins;
+    document.getElementById("tickets").textContent = save.tickets;
+  }
+  renderWallet();
 
   // ---------- Opciones ----------
   const $ = (id) => document.getElementById(id);
