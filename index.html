@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Poke∞</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Fondo animado: estrellas, grietas y orbes -->
+  <canvas id="bg"></canvas>
+
+  <main id="app">
+    <!-- Pantalla de título -->
+    <section id="screen-title" class="screen active">
+      <h1 class="logo">
+        <span class="logo-text">POKE</span><span class="logo-inf">∞</span>
+      </h1>
+      <p class="tagline">Sobrevive. Entra en las grietas. Fusiona tu poder.</p>
+
+      <nav class="menu" id="main-menu">
+        <button class="menu-btn" data-action="play">Jugar</button>
+        <button class="menu-btn" data-action="options">Opciones</button>
+        <button class="menu-btn" data-action="credits">Créditos</button>
+      </nav>
+
+      <p class="hint">↑ ↓ para moverte · Enter para elegir</p>
+      <p class="version">v0.1 · menú de inicio</p>
+    </section>
+
+    <!-- Opciones -->
+    <section id="screen-options" class="screen">
+      <h2 class="panel-title">Opciones</h2>
+      <div class="panel">
+        <label class="opt">
+          <span>Música</span>
+          <input type="range" id="opt-music" min="0" max="100" step="10">
+          <output id="out-music"></output>
+        </label>
+        <label class="opt">
+          <span>Efectos</span>
+          <input type="range" id="opt-sfx" min="0" max="100" step="10">
+          <output id="out-sfx"></output>
+        </label>
+        <label class="opt opt-check">
+          <span>Pantalla completa</span>
+          <input type="checkbox" id="opt-fullscreen">
+        </label>
+        <label class="opt opt-check">
+          <span>Mostrar FPS</span>
+          <input type="checkbox" id="opt-fps">
+        </label>
+      </div>
+      <button class="menu-btn back-btn" data-action="back">Volver</button>
+    </section>
+
+    <!-- Créditos -->
+    <section id="screen-credits" class="screen">
+      <h2 class="panel-title">Créditos</h2>
+      <div class="panel credits">
+        <p>Idea y diseño<br><strong>Andy</strong></p>
+        <p>Proyecto fan sin ánimo de lucro.<br>Pokémon es marca de Nintendo,<br>Game Freak y The Pokémon Company.</p>
+      </div>
+      <button class="menu-btn back-btn" data-action="back">Volver</button>
+    </section>
+
+    <!-- Jugar (provisional) -->
+    <section id="screen-play" class="screen">
+      <h2 class="panel-title">¡Próximamente!</h2>
+      <div class="panel credits">
+        <p>Aquí empezará la partida.<br>Siguiente paso: elegir compañero<br>y la primera oleada.</p>
+      </div>
+      <button class="menu-btn back-btn" data-action="back">Volver</button>
+    </section>
+  </main>
+
+  <div id="fps" hidden></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

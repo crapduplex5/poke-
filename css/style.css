@@ -1,0 +1,184 @@
+:root {
+  --bg: #0b0716;
+  --ink: #f4ecff;
+  --muted: #a79bc4;
+  --rift: #b14cff;
+  --rift-2: #4cd9ff;
+  --gold: #ffd84c;
+  --panel: rgba(20, 12, 40, 0.82);
+  --border: #6b3fb0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Press Start 2P", monospace;
+  overflow: hidden;
+  user-select: none;
+}
+
+#bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#app {
+  position: relative;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.screen {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.97);
+  transition: opacity .35s ease, transform .35s ease;
+  width: 100%;
+  max-width: 560px;
+}
+.screen.active { opacity: 1; pointer-events: auto; transform: none; }
+
+/* ---------- Logo ---------- */
+.logo {
+  font-size: clamp(40px, 11vw, 88px);
+  letter-spacing: 4px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  animation: float 3s ease-in-out infinite;
+}
+.logo-text {
+  color: var(--gold);
+  text-shadow:
+    4px 4px 0 #c0392b,
+    8px 8px 0 #2a1450;
+}
+.logo-inf {
+  font-family: system-ui, sans-serif;
+  font-weight: 900;
+  font-size: 1.35em;
+  margin-left: 8px;
+  background: linear-gradient(90deg, var(--rift), var(--rift-2), var(--rift));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 12px var(--rift));
+  animation: shimmer 3s linear infinite;
+}
+
+.tagline {
+  font-size: clamp(8px, 2.2vw, 11px);
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* ---------- Menú ---------- */
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 12px;
+  width: min(320px, 100%);
+}
+
+.menu-btn {
+  font: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--panel);
+  border: 3px solid var(--border);
+  border-radius: 6px;
+  padding: 16px 20px;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 4px 0 #2a1450;
+  transition: transform .1s, border-color .15s, color .15s, box-shadow .15s;
+}
+.menu-btn::before {
+  content: "▶";
+  position: absolute;
+  left: 14px;
+  opacity: 0;
+  color: var(--gold);
+  transition: opacity .15s;
+}
+.menu-btn.selected,
+.menu-btn:focus-visible {
+  outline: none;
+  color: var(--gold);
+  border-color: var(--rift);
+  box-shadow: 0 4px 0 #2a1450, 0 0 18px rgba(177, 76, 255, .6);
+  transform: translateY(-2px);
+}
+.menu-btn.selected::before,
+.menu-btn:focus-visible::before { opacity: 1; animation: blink 1s steps(2) infinite; }
+.menu-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #2a1450; }
+
+.hint, .version {
+  font-size: 8px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.8;
+}
+.version { position: fixed; right: 12px; bottom: 12px; opacity: .6; }
+
+/* ---------- Paneles ---------- */
+.panel-title {
+  font-size: clamp(18px, 5vw, 26px);
+  color: var(--gold);
+  text-shadow: 3px 3px 0 #2a1450;
+}
+.panel {
+  width: 100%;
+  background: var(--panel);
+  border: 3px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.opt {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 44px;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+}
+.opt-check { grid-template-columns: 1fr auto; }
+.opt output { text-align: right; color: var(--gold); }
+.opt input[type="range"] { accent-color: var(--rift); width: 100%; }
+.opt input[type="checkbox"] { accent-color: var(--rift); width: 20px; height: 20px; }
+
+.credits { text-align: center; font-size: 10px; line-height: 2; }
+.credits strong { color: var(--gold); }
+
+.back-btn { width: min(240px, 100%); }
+
+#fps {
+  position: fixed; left: 8px; top: 8px;
+  font-size: 9px; color: var(--rift-2);
+}
+
+@keyframes float   { 50% { transform: translateY(-8px); } }
+@keyframes shimmer { to { background-position: -200% 0; } }
+@keyframes blink   { 50% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .logo, .logo-inf { animation: none; }
+}
